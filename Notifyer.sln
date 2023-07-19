@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TgNotifyer", "TgNotifyer\TgNotifyer.csproj", "{857A8144-B367-4C6A-8F5A-A3D2D056B967}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{FC8873B0-7EF0-4226-B601-1DEB7CA3120A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{5B713D5F-1CF0-494F-B658-C6A50EF7294E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Systems", "Systems", "{DE31E100-D628-4AC0-A90E-0829436F66F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{00EAE591-1861-48B6-B917-ACEE0D562AD8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgNotifyer", "Systems\TgNotifyer\TgNotifyer.csproj", "{AC9314C3-B7B4-437C-B3B8-B17DB3BB0939}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +19,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{857A8144-B367-4C6A-8F5A-A3D2D056B967}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{857A8144-B367-4C6A-8F5A-A3D2D056B967}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{857A8144-B367-4C6A-8F5A-A3D2D056B967}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{857A8144-B367-4C6A-8F5A-A3D2D056B967}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC9314C3-B7B4-437C-B3B8-B17DB3BB0939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC9314C3-B7B4-437C-B3B8-B17DB3BB0939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC9314C3-B7B4-437C-B3B8-B17DB3BB0939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC9314C3-B7B4-437C-B3B8-B17DB3BB0939}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AC9314C3-B7B4-437C-B3B8-B17DB3BB0939} = {DE31E100-D628-4AC0-A90E-0829436F66F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {892E7791-76F5-4D85-B923-C4A89125EB64}
