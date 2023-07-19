@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{00EAE591
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgNotifyer", "Systems\TgNotifyer\TgNotifyer.csproj", "{AC9314C3-B7B4-437C-B3B8-B17DB3BB0939}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifyer.Context", "Data\Notifyer.Context\Notifyer.Context.csproj", "{C57406D1-F31E-4C5E-9BE3-B784FD9CD56C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{AC9314C3-B7B4-437C-B3B8-B17DB3BB0939}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC9314C3-B7B4-437C-B3B8-B17DB3BB0939}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC9314C3-B7B4-437C-B3B8-B17DB3BB0939}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C57406D1-F31E-4C5E-9BE3-B784FD9CD56C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C57406D1-F31E-4C5E-9BE3-B784FD9CD56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C57406D1-F31E-4C5E-9BE3-B784FD9CD56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C57406D1-F31E-4C5E-9BE3-B784FD9CD56C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AC9314C3-B7B4-437C-B3B8-B17DB3BB0939} = {DE31E100-D628-4AC0-A90E-0829436F66F9}
+		{C57406D1-F31E-4C5E-9BE3-B784FD9CD56C} = {FC8873B0-7EF0-4226-B601-1DEB7CA3120A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {892E7791-76F5-4D85-B923-C4A89125EB64}
