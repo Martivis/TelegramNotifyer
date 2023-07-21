@@ -4,8 +4,9 @@ services:
   notifyer.postgres:
     image: postgres:latest
 
-  tgnotifyer:
-    image: ${DOCKER_REGISTRY-}tgnotifyer
+  notifyer.systems.tgnotifyer:
+    image: ${DOCKER_REGISTRY-}notifyerdatatgnotifyer
     build:
       context: .
-      dockerfile: Systems/TgNotifyer/Dockerfile
+      dockerfile: Systems/Notifyer.Systems.TgNotifyer/Dockerfile
+

@@ -1,4 +1,4 @@
-using Notifyer.Context;
+using Notifyer.Data.Context;
 using TgNotifyer;
 
 var configuration = new ConfigurationBuilder()

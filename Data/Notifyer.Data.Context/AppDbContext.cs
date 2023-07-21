@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Notifyer.Context.Entities;
+using Notifyer.Data.Context.Entities;
 
-namespace Notifyer.Context
+namespace Notifyer.Data.Context
 {
     public class AppDbContext : DbContext
     {

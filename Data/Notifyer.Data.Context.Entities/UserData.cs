@@ -1,4 +1,4 @@
-﻿namespace Notifyer.Context.Entities
+﻿namespace Notifyer.Data.Context.Entities
 {
     public class UserData
     {

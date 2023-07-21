@@ -10,8 +10,8 @@ services:
       - env.postgres
     extra_hosts:
       - host.docker.internal:host-gateway
-  
-  tgnotifyer:
+
+  notifyer.systems.tgnotifyer:
     environment:
       - DOTNET_ENVIRONMENT=Development
     volumes:

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Notifyer.Context.Entities\Notifyer.Context.Entities.csproj" />
+    <ProjectReference Include="..\Notifyer.Data.Context.Entities\Notifyer.Data.Context.Entities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Notifyer.Context
+namespace Notifyer.Data.Context
 {
     public static class Bootstraper
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Notifyer.Context.Entities
+namespace Notifyer.Data.Context.Entities
 {
     public class NewsCathegory
     {
