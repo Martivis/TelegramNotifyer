@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  notifyer.postgres:
+    image: postgres:latest
+
+  tgnotifyer:
+    image: ${DOCKER_REGISTRY-}tgnotifyer
+    build:
+      context: .
+      dockerfile: Systems/TgNotifyer/Dockerfile

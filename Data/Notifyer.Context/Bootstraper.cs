@@ -9,7 +9,7 @@ namespace Notifyer.Context
         public static IServiceCollection AddAppDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContextFactory<AppDbContext>(opt => 
-                opt.UseNpgsql(configuration.GetConnectionString("UserSubs"))
+                opt.UseNpgsql(configuration.GetConnectionString("Subscribtions"))
                    .EnableSensitiveDataLogging()
             );
 

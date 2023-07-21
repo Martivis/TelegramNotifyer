@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  notifyer.postgres:
+    ports:
+      - "5432:5432"
+    volumes:
+      - ~/.docker-conf/postgres/data/:/var/lib/postgres/data
+    env_file:
+      - env.postgres
+    extra_hosts:
+      - host.docker.internal:host-gateway
+  
+  tgnotifyer:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

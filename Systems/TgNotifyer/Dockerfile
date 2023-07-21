@@ -5,10 +5,12 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["TgNotifyer/TgNotifyer.csproj", "TgNotifyer/"]
-RUN dotnet restore "TgNotifyer/TgNotifyer.csproj"
+COPY ["Systems/TgNotifyer/TgNotifyer.csproj", "Systems/TgNotifyer/"]
+COPY ["Data/Notifyer.Context/Notifyer.Context.csproj", "Data/Notifyer.Context/"]
+COPY ["Data/Notifyer.Context.Entities/Notifyer.Context.Entities.csproj", "Data/Notifyer.Context.Entities/"]
+RUN dotnet restore "Systems/TgNotifyer/TgNotifyer.csproj"
 COPY . .
-WORKDIR "/src/TgNotifyer"
+WORKDIR "/src/Systems/TgNotifyer"
 RUN dotnet build "TgNotifyer.csproj" -c Release -o /app/build
 
 FROM build AS publish
