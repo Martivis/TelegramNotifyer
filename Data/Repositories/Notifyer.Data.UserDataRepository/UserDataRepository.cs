@@ -18,31 +18,39 @@ namespace Notifyer.Data.UserDataRepository
             _context = context;
         }
 
-        public async Task AddUserAsync(UserData userData)
+        public async Task AddAsync(UserData userData)
         {
             _context.Add(userData);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteUserAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            var user = await GetUserAsync(id);
+            var user = await GetAsync(id);
             _context.Remove(user);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<UserData>> GetAllUsersAsync()
+        public async Task<IEnumerable<UserData>> GetAllAsync()
         {
             return await _context.Set<UserData>().ToListAsync();
         }
 
-        public async Task<UserData> GetUserAsync(int id)
+        public async Task<IEnumerable<UserData>> GetByCathegoryAsync(string cathegoryName)
+        {
+            return await _context.Set<UserData>()
+                .Include(user => user.SubscribedCathegories)
+                .Where(user => user.SubscribedCathegories.Any(cathegory => cathegory.Name == cathegoryName))
+                .ToListAsync();
+        }
+
+        public async Task<UserData> GetAsync(int id)
         {
             return await _context.FindAsync<UserData>(id)
                 ?? throw new ApplicationException($"User with id {id} not found");
         }
 
-        public async Task UpdateUserAsync(UserData userData)
+        public async Task UpdateAsync(UserData userData)
         {
             _context.Update(userData);
             await _context.SaveChangesAsync();

@@ -4,10 +4,11 @@ namespace Notifyer.Data.UserDataRepository
 {
     public interface IUserDataRepository
     {
-        Task AddUserAsync(UserData userData);
-        Task<IEnumerable<UserData>> GetAllUsersAsync();
-        Task<UserData> GetUserAsync(int id);
-        Task UpdateUserAsync(UserData userData);
-        Task DeleteUserAsync(int id);
+        Task AddAsync(UserData userData);
+        Task<IEnumerable<UserData>> GetAllAsync();
+        Task<IEnumerable<UserData>> GetByCathegoryAsync(string id);
+        Task<UserData> GetAsync(int id);
+        Task UpdateAsync(UserData userData);
+        Task DeleteAsync(int id);
     }
 }
