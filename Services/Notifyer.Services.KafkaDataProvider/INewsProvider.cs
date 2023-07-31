@@ -2,8 +2,8 @@
 
 namespace Notifyer.Services.KafkaDataProvider
 {
-    public interface IDataProvider
+    public interface INewsProvider
     {
-        NewsModel GetData();
+        void Subscribe(Action<NewsModel> action);
     }
 }
