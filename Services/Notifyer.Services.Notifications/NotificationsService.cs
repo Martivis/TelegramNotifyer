@@ -1,5 +1,6 @@
-﻿using Notifyer.Data.UserDataRepository;
-using Notifyer.Services.KafkaDataProvider;
+﻿using Microsoft.EntityFrameworkCore;
+using Notifyer.Data.Context;
+using Notifyer.Data.Context.Entities;
 using Notifyer.Services.KafkaDataProvider.Models;
 using Notifyer.Services.Messages;
 
@@ -7,23 +8,27 @@ namespace Notifyer.Services.Notifications
 {
     public class NotificationsService
     {
-        private readonly IUserDataRepository _userRepository;
+        private readonly AppDbContext _context;
         private readonly IMessageProvider _messageProvider;
         private readonly IMessageSender _messageSender;
 
         public NotificationsService(
-            IUserDataRepository userRepository, 
+            AppDbContext dbContext, 
             IMessageProvider messageProvider, 
             IMessageSender messageSender)
         {
-            _userRepository = userRepository;
+            _context = dbContext;
             _messageProvider = messageProvider;
             _messageSender = messageSender;
         }
 
         public async Task HandleNotification(NewsModel model)
         {
-            var subscribers = await _userRepository.GetByCathegoryAsync(model.Cathegory);
+            var subscribers = await _context.Set<UserData>()
+                .Include(user => user.SubscribedCathegories)
+                .Where(user => user.SubscribedCathegories.Any(cathegory => cathegory.Name == model.Cathegory))
+                .ToListAsync();
+
             foreach (var subscriber in subscribers)
             {
                 await SendNotificationAsync(model, subscriber.ChatId);

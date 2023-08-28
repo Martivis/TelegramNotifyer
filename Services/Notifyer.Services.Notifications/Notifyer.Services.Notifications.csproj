@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\Repositories\Notifyer.Data.UserDataRepository\Notifyer.Data.UserDataRepository.csproj" />
+    <ProjectReference Include="..\..\Data\Notifyer.Data.Context\Notifyer.Data.Context.csproj" />
     <ProjectReference Include="..\Notifyer.Services.KafkaDataProvider\Notifyer.Services.KafkaDataProvider.csproj" />
     <ProjectReference Include="..\Notifyer.Services.Messages\Notifyer.Services.Messages.csproj" />
   </ItemGroup>
