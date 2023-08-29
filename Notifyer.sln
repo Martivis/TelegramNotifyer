@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notifyer.Services.Messages"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notifyer.Services.TelegramService", "Services\Notifyer.Services.TelegramService\Notifyer.Services.TelegramService.csproj", "{7DA5EC93-2211-49C6-A600-093546D66B76}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISubscriptionsService", "Services\ISubscriptionsService\ISubscriptionsService.csproj", "{58030F3F-AB91-4465-8C0B-6AF0D8E74607}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notifyer.Services.Subscriptions", "Services\Notifyer.Services.Subscriptions\Notifyer.Services.Subscriptions.csproj", "{A45BAA20-4B0C-4031-9446-F411E6076588}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,10 +67,10 @@ Global
 		{7DA5EC93-2211-49C6-A600-093546D66B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DA5EC93-2211-49C6-A600-093546D66B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DA5EC93-2211-49C6-A600-093546D66B76}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58030F3F-AB91-4465-8C0B-6AF0D8E74607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58030F3F-AB91-4465-8C0B-6AF0D8E74607}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58030F3F-AB91-4465-8C0B-6AF0D8E74607}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58030F3F-AB91-4465-8C0B-6AF0D8E74607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A45BAA20-4B0C-4031-9446-F411E6076588}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A45BAA20-4B0C-4031-9446-F411E6076588}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A45BAA20-4B0C-4031-9446-F411E6076588}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A45BAA20-4B0C-4031-9446-F411E6076588}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,7 +83,7 @@ Global
 		{0AA905F1-1ED7-41C3-B2D9-192EFCF22F69} = {5B713D5F-1CF0-494F-B658-C6A50EF7294E}
 		{20FB8C0A-B530-4F48-98A3-969995A407F8} = {5B713D5F-1CF0-494F-B658-C6A50EF7294E}
 		{7DA5EC93-2211-49C6-A600-093546D66B76} = {5B713D5F-1CF0-494F-B658-C6A50EF7294E}
-		{58030F3F-AB91-4465-8C0B-6AF0D8E74607} = {5B713D5F-1CF0-494F-B658-C6A50EF7294E}
+		{A45BAA20-4B0C-4031-9446-F411E6076588} = {5B713D5F-1CF0-494F-B658-C6A50EF7294E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {892E7791-76F5-4D85-B923-C4A89125EB64}

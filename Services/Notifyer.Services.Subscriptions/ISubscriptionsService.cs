@@ -1,4 +1,4 @@
-﻿namespace ISubscriptionsService
+﻿namespace Notifyer.Services.Subscriptions
 {
     public interface ISubscriptionsService
     {

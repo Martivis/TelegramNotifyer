@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ISubscriptionsService
+namespace Notifyer.Services.Subscriptions
 {
     internal class SubscriptionsService : ISubscriptionsService
     {
