@@ -6,15 +6,15 @@ using Notifyer.Services.TelegramService;
 
 namespace Notifyer.Services.Notifications
 {
-    public class NotificationsService
+    public class NotificationsService : INotificationsService
     {
         private readonly AppDbContext _context;
         private readonly IMessageProvider _messageProvider;
         private readonly ITelegramService _telegramService;
 
         public NotificationsService(
-            AppDbContext dbContext, 
-            IMessageProvider messageProvider, 
+            AppDbContext dbContext,
+            IMessageProvider messageProvider,
             ITelegramService telegramService)
         {
             _context = dbContext;
