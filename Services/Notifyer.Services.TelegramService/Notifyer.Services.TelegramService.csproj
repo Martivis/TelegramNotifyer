@@ -10,4 +10,9 @@
     <PackageReference Include="Telegram.Bot" Version="19.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\Notifyer.Data.Context\Notifyer.Data.Context.csproj" />
+    <ProjectReference Include="..\Notifyer.Services.Subscriptions\Notifyer.Services.Subscriptions.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Configuration;
+using Notifyer.Services.Subscriptions;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
@@ -12,13 +9,20 @@ namespace Notifyer.Services.TelegramService
 {
     internal class TelegramService : ITelegramService
     {
-        private readonly TelegramBotClient _client;
-        private CancellationTokenSource _tokenSource;
-        private ReceiverOptions _receiverOptions;
+        private const string TOKEN_SECTION_NAME = "TelegramBotToken";
 
-        public TelegramService(string token)
-        {
-            _client = new TelegramBotClient(token);
+        private readonly ISubscriptionsService _subscriptionsService;
+        private readonly IConfiguration _configuration;
+
+        private TelegramBotClient _client;
+        private readonly CancellationTokenSource _tokenSource;
+        private readonly ReceiverOptions _receiverOptions;
+
+        public TelegramService(ISubscriptionsService subscriptionsService, IConfiguration configuration)
+        { 
+            _subscriptionsService = subscriptionsService;
+            _configuration = configuration;
+
             _tokenSource = new CancellationTokenSource();
             _receiverOptions = new ReceiverOptions()
             {
@@ -28,6 +32,10 @@ namespace Notifyer.Services.TelegramService
 
         public void Start()
         {
+            var token = _configuration.GetSection(TOKEN_SECTION_NAME).Value
+                ?? throw new Exception($"Missing section {TOKEN_SECTION_NAME} in configuration");
+            _client = new TelegramBotClient(token);
+
             _client.StartReceiving(receiverOptions: _receiverOptions,
                 updateHandler: HandleUpdateAsync,
                 pollingErrorHandler: HandleErrorAsync,
@@ -37,6 +45,25 @@ namespace Notifyer.Services.TelegramService
         private async Task HandleUpdateAsync(ITelegramBotClient client, Update update, CancellationToken cancellationToken)
         {
             var message = update.Message;
+            if (message == null)
+                return;
+
+            if (message.Text?.StartsWith("+") ?? false)
+            {
+                var chatId = message.From!.Id;
+                var cathegoryName = message.Text[1..].Trim();
+
+                try
+                {
+                    await _subscriptionsService.SubscribeAsync(chatId, cathegoryName);
+
+                    await client.SendTextMessageAsync(chatId, $"Successful subscribed to {cathegoryName}");
+                }
+                catch (ApplicationException ex)
+                {
+                    await client.SendTextMessageAsync(chatId, ex.Message);
+                }
+            }
 
         }
 

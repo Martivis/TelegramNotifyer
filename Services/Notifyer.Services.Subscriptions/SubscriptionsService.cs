@@ -20,13 +20,28 @@ namespace Notifyer.Services.Subscriptions
         public async Task SubscribeAsync(long chatId, string cathegoryName)
         {
             var user = _context.Set<UserData>().Find(chatId)
-                ?? throw new ApplicationException($"User {chatId} not found");
+                ?? await RegisterUser(chatId);
 
             var cathegory = _context.Set<NewsCathegory>().FirstOrDefault(x => x.Name == cathegoryName)
                 ?? throw new ApplicationException($"Cathegory {cathegoryName} not found");
 
             user.SubscribedCathegories.Add(cathegory);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<UserData> RegisterUser(long chatId)
+        {
+            if (_context.Set<UserData>().Find(chatId) is not null)
+                throw new ApplicationException($"User already exists");
+
+            var user = new UserData
+            {
+                ChatId = chatId,
+            };
+
+            _context.Add(user);
+            await _context.SaveChangesAsync();
+            return user;
         }
     }
 }
