@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Notifyer.Data.Context\Notifyer.Data.Context.csproj" />
     <ProjectReference Include="..\Notifyer.Services.KafkaDataProvider\Notifyer.Services.KafkaDataProvider.csproj" />
-    <ProjectReference Include="..\Notifyer.Services.Messages\Notifyer.Services.Messages.csproj" />
+    <ProjectReference Include="..\Notifyer.Services.TelegramService\Notifyer.Services.TelegramService.csproj" />
   </ItemGroup>
 
 </Project>

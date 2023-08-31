@@ -2,7 +2,7 @@
 using Notifyer.Data.Context;
 using Notifyer.Data.Context.Entities;
 using Notifyer.Services.KafkaDataProvider.Models;
-using Notifyer.Services.Messages;
+using Notifyer.Services.TelegramService;
 
 namespace Notifyer.Services.Notifications
 {
@@ -10,16 +10,16 @@ namespace Notifyer.Services.Notifications
     {
         private readonly AppDbContext _context;
         private readonly IMessageProvider _messageProvider;
-        private readonly IMessageSender _messageSender;
+        private readonly ITelegramService _telegramService;
 
         public NotificationsService(
             AppDbContext dbContext, 
             IMessageProvider messageProvider, 
-            IMessageSender messageSender)
+            ITelegramService telegramService)
         {
             _context = dbContext;
             _messageProvider = messageProvider;
-            _messageSender = messageSender;
+            _telegramService = telegramService;
         }
 
         public async Task HandleNotification(NewsModel model)
@@ -38,7 +38,7 @@ namespace Notifyer.Services.Notifications
         private async Task SendNotificationAsync(NewsModel model, long chatId)
         {
             var message = _messageProvider.GetMessage(model);
-            await _messageSender.SendAsync(message, chatId);
+            await _telegramService.SendMessageAsync(chatId, message);
         }
     }
 }

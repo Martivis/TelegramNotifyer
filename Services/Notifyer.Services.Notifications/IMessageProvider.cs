@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Notifyer.Services.Messages
+namespace Notifyer.Services.Notifications
 {
     public interface IMessageProvider
     {
