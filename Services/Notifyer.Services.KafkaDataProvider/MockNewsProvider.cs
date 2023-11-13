@@ -52,7 +52,7 @@ namespace Notifyer.Services.KafkaDataProvider
 
         public Task<NewsModel> GetNewsModelAsync()
         {
-            return Task.FromResult(_news[_lastIndex++]);
+            return Task.FromResult(_news[_lastIndex++ % _news.Count]);
         }
     }
 }
