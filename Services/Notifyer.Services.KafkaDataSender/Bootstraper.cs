@@ -2,11 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Notifyer.Services.KafkaDataSender.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Notifyer.Services.KafkaDataSender
 {
@@ -18,8 +13,8 @@ namespace Notifyer.Services.KafkaDataSender
             {
                 BootstrapServers = configuration.GetSection("KafkaHost").Value
             };
-            
-            var producer = new ProducerBuilder<Ignore, NewsModel>(kafkaConfig).Build();
+
+            var producer = new ProducerBuilder<Ignore, string>(kafkaConfig).Build();
             services.AddSingleton(producer);
             services.AddSingleton<INewsSender, KafkaNewsSender>();
             

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Notifyer.Services.KafkaDataProvider
@@ -12,9 +13,9 @@ namespace Notifyer.Services.KafkaDataProvider
     internal class KafkaNewsProvider : INewsProvider, IDisposable
     {
         private readonly IConfiguration _configuration;
-        private readonly IConsumer<Ignore, NewsModel> _consumer;
+        private readonly IConsumer<Ignore, string> _consumer;
 
-        public KafkaNewsProvider(IConfiguration configuration, IConsumer<Ignore, NewsModel> consumer)
+        public KafkaNewsProvider(IConfiguration configuration, IConsumer<Ignore, string> consumer)
         {
             _configuration = configuration;
             _consumer = consumer;
@@ -29,7 +30,10 @@ namespace Notifyer.Services.KafkaDataProvider
 
         public Task<NewsModel> GetNewsModelAsync()
         {
-            return Task.FromResult(_consumer.Consume().Message.Value);
+            var json = _consumer.Consume().Message.Value;
+            var model = JsonSerializer.Deserialize<NewsModel>(json) ??
+                throw new InvalidOperationException("Wrong model");
+            return Task.FromResult(model);
         }
     }
 }

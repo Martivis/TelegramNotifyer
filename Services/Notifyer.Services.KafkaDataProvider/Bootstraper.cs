@@ -26,7 +26,7 @@ namespace Notifyer.Services.KafkaDataProvider
                 GroupId = "News",
                 EnableAutoCommit = true
             };
-            var consumer = new ConsumerBuilder<Ignore, NewsModel>(kafkaConfig).Build();
+            var consumer = new ConsumerBuilder<Ignore, string>(kafkaConfig).Build();
 
             services.AddSingleton(consumer);
             services.AddSingleton<INewsProvider, KafkaNewsProvider>();
