@@ -8,23 +8,25 @@ namespace Notifyer.Services.Notifications
 {
     public class NotificationsService : INotificationsService
     {
-        private readonly AppDbContext _context;
+        private readonly IDbContextFactory<AppDbContext> _contextFactory;
         private readonly IMessageProvider _messageProvider;
         private readonly ITelegramService _telegramService;
 
         public NotificationsService(
-            AppDbContext dbContext,
+            IDbContextFactory<AppDbContext> dbContextFactory,
             IMessageProvider messageProvider,
             ITelegramService telegramService)
         {
-            _context = dbContext;
+            _contextFactory = dbContextFactory;
             _messageProvider = messageProvider;
             _telegramService = telegramService;
         }
 
         public async Task HandleNotification(NewsModel model)
         {
-            var subscribers = await _context.Set<UserData>()
+            using var context = _contextFactory.CreateDbContext();
+
+            var subscribers = await context.Set<UserData>()
                 .Include(user => user.SubscribedCathegories)
                 .Where(user => user.SubscribedCathegories.Any(cathegory => cathegory.Name == model.Cathegory))
                 .ToListAsync();

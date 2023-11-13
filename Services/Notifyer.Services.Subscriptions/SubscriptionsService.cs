@@ -1,4 +1,5 @@
-﻿using Notifyer.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using Notifyer.Data.Context;
 using Notifyer.Data.Context.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,28 +11,42 @@ namespace Notifyer.Services.Subscriptions
 {
     internal class SubscriptionsService : ISubscriptionsService
     {
-        private readonly AppDbContext _context;
+        private readonly IDbContextFactory<AppDbContext> _contextFactory;
 
-        public SubscriptionsService(AppDbContext context)
+        public SubscriptionsService(IDbContextFactory<AppDbContext> contextFactury)
         {
-            _context = context;
+            _contextFactory = contextFactury;
         }
 
         public async Task SubscribeAsync(long chatId, string cathegoryName)
         {
-            var user = _context.Set<UserData>().Find(chatId)
-                ?? await RegisterUser(chatId);
+            using var context = _contextFactory.CreateDbContext();
 
-            var cathegory = _context.Set<NewsCathegory>().FirstOrDefault(x => x.Name == cathegoryName)
+            var user = await context.Set<UserData>()
+                .Include(u => u.SubscribedCathegories)
+                .FirstOrDefaultAsync(u => u.ChatId == chatId);
+            
+            if (user == null)
+            {
+                await RegisterUser(chatId);
+
+                user = await context.Set<UserData>()
+                .Include(u => u.SubscribedCathegories)
+                .FirstAsync(u => u.ChatId == chatId);
+            }
+
+            var cathegory = context.Set<NewsCathegory>().FirstOrDefault(x => x.Name == cathegoryName)
                 ?? throw new ApplicationException($"Cathegory {cathegoryName} not found");
 
             user.SubscribedCathegories.Add(cathegory);
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
 
-        public async Task<UserData> RegisterUser(long chatId)
+        public async Task RegisterUser(long chatId)
         {
-            if (_context.Set<UserData>().Find(chatId) is not null)
+            using var context = _contextFactory.CreateDbContext();
+
+            if (context.Set<UserData>().Find(chatId) is not null)
                 throw new ApplicationException($"User already exists");
 
             var user = new UserData
@@ -39,9 +54,8 @@ namespace Notifyer.Services.Subscriptions
                 ChatId = chatId,
             };
 
-            _context.Add(user);
-            await _context.SaveChangesAsync();
-            return user;
+            context.Add(user);
+            await context.SaveChangesAsync();
         }
     }
 }

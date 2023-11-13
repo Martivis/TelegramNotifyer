@@ -13,6 +13,7 @@ namespace Notifyer.Services.Notifications
         {
             services.AddSingleton<INotificationsService, NotificationsService>();
             services.AddSingleton<IMessageProvider, MessageProvider>();
+
             return services;
         }
     }
