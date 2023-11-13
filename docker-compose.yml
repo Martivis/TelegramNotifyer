@@ -4,9 +4,27 @@ services:
   notifyer.postgres:
     image: postgres:latest
 
+
+  notifyer.kafka:
+    image: 'bitnami/kafka:latest'
+
+
   notifyer.systems.tgnotifyer:
     image: ${DOCKER_REGISTRY-}notifyerdatatgnotifyer
     build:
       context: .
       dockerfile: Systems/Notifyer.Systems.TgNotifyer/Dockerfile
+    depends_on:
+      - notifyer.kafka
+      - notifyer.postgres
+
+
+  notifyer.systems.newsproducer:
+    image: ${DOCKER_REGISTRY-}notifyersystemsnewsproducer
+    build:
+      context: .
+      dockerfile: Systems/Notifyer.Systems.NewsProducer/Dockerfile
+    depends_on:
+      - notifyer.kafka
+      - notifyer.postgres
 

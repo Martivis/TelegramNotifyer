@@ -16,5 +16,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Notifyer.Data.Context\Notifyer.Data.Context.csproj" />
+    <ProjectReference Include="..\..\Services\Notifyer.Services.KafkaDataProvider\Notifyer.Services.KafkaDataProvider.csproj" />
+    <ProjectReference Include="..\..\Services\Notifyer.Services.Notifications\Notifyer.Services.Notifications.csproj" />
+    <ProjectReference Include="..\..\Services\Notifyer.Services.Subscriptions\Notifyer.Services.Subscriptions.csproj" />
+    <ProjectReference Include="..\..\Services\Notifyer.Services.TelegramService\Notifyer.Services.TelegramService.csproj" />
   </ItemGroup>
 </Project>
