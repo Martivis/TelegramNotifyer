@@ -13,10 +13,10 @@ namespace Notifyer.Services.KafkaDataSender
 {
     internal class KafkaNewsSender : INewsSender
     {
-        private readonly IProducer<Ignore, string> _producer;
+        private readonly IProducer<Null, string> _producer;
         private readonly IConfiguration _configuration;
 
-        public KafkaNewsSender(IProducer<Ignore, string> producer, IConfiguration configuration)
+        public KafkaNewsSender(IProducer<Null, string> producer, IConfiguration configuration)
         {
             _producer = producer;
             _configuration = configuration;
@@ -25,7 +25,7 @@ namespace Notifyer.Services.KafkaDataSender
         public async Task SendAsync(NewsModel model)
         {
             var topic = _configuration.GetSection("NewsTopic").Value;
-            var message = new Message<Ignore, string>()
+            var message = new Message<Null, string>()
             {
                 Value = JsonSerializer.Serialize(model)
             };

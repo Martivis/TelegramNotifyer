@@ -11,13 +11,6 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
 
-  notifyer.kafka:
-    ports:
-      - "9092:9092"
-      - "9093:9093"
-    env_file:
-      - env.kafka
-
   notifyer.systems.tgnotifyer:
     environment:
       - DOTNET_ENVIRONMENT=Development

@@ -14,7 +14,7 @@ namespace Notifyer.Services.KafkaDataSender
                 BootstrapServers = configuration.GetSection("KafkaHost").Value
             };
 
-            var producer = new ProducerBuilder<Ignore, string>(kafkaConfig).Build();
+            var producer = new ProducerBuilder<Null, string>(kafkaConfig).Build();
             services.AddSingleton(producer);
             services.AddSingleton<INewsSender, KafkaNewsSender>();
             

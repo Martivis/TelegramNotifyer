@@ -18,6 +18,7 @@ namespace Notifyer.Systems.NewsProducer
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            await Task.Delay(10000, stoppingToken);
             while (!stoppingToken.IsCancellationRequested)
             {
                 var model = await _newsProvider.GetNewsModelAsync();

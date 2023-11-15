@@ -22,13 +22,13 @@ namespace Notifyer.Systems.TgNotifyer
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             _telegramService.Start();
-
+            await Task.Delay(15000, stoppingToken);
             while (!stoppingToken.IsCancellationRequested)
             {
                 var newsModel = await _newsProvider.GetNewsModelAsync();
                 await _notificationsService.HandleNotification(newsModel);
                 _logger.LogInformation("Notification sent at: {time}", DateTimeOffset.Now);
-                await Task.Delay(20000, stoppingToken);
+                await Task.Delay(1000, stoppingToken);
             }
         }
     }
