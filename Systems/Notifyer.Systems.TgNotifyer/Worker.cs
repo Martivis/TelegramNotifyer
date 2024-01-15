@@ -11,14 +11,12 @@ namespace Notifyer.Systems.TgNotifyer
         private readonly INotificationsService _notificationsService;
         private readonly ITelegramService _telegramService;
 
-        public Worker(ILogger<Worker> logger, INewsProvider newsProvider, INotificationsService notificationsService, ITelegramService telegramService, IConfiguration config)
+        public Worker(ILogger<Worker> logger, INewsProvider newsProvider, INotificationsService notificationsService, ITelegramService telegramService)
         {
             _logger = logger;
             _newsProvider = newsProvider;
             _notificationsService = notificationsService;
             _telegramService = telegramService;
-            var cs = config.GetConnectionString("Subscribtions");
-            _logger.LogWarning("sc");
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)

@@ -8,6 +8,7 @@ namespace Notifyer.Data.Context
     {
         public static IServiceCollection AddAppDbContext(this IServiceCollection services, IConfiguration configuration)
         {
+            Console.WriteLine(configuration.GetConnectionString("Subscribtions"));
             services.AddDbContextFactory<AppDbContext>(opt => 
                 opt.UseNpgsql(configuration.GetConnectionString("Subscribtions"))
                    //.EnableSensitiveDataLogging()
