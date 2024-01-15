@@ -8,6 +8,7 @@ using Notifyer.Services.Subscriptions;
 var configuration = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
         .AddJsonFile("appsettings.json", optional: false)
+        .AddEnvironmentVariables()
         .Build();
 
 IHost host = Host.CreateDefaultBuilder(args)
