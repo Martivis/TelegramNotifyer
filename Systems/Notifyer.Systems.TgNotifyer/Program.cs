@@ -13,7 +13,7 @@ var configuration = new ConfigurationBuilder()
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
-        services.AddKafkaNewsProvider(configuration);
+        services.AddMockNewsProvider();
         services.AddNotificationService();
         services.AddSubscriptionsService();
         services.AddTelegramService();

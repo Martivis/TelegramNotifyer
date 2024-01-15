@@ -28,7 +28,7 @@ namespace Notifyer.Systems.TgNotifyer
                 var newsModel = await _newsProvider.GetNewsModelAsync();
                 await _notificationsService.HandleNotification(newsModel);
                 _logger.LogInformation("Notification sent at: {time}", DateTimeOffset.Now);
-                await Task.Delay(1000, stoppingToken);
+                await Task.Delay(20000, stoppingToken);
             }
         }
     }
